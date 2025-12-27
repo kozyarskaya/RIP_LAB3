@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration version="2.0">
+    <event name="jdk.ExecutionSample">
+        <setting name="enabled">true</setting>
+        <setting name="period">10 ms</setting>
+    </event>
+    
+    <event name="jdk.NativeMethodSample">
+        <setting name="enabled">true</setting>
+        <setting name="period">20 ms</setting>
+    </event>
+    
+    <event name="jdk.ObjectAllocationInNewTLAB">
+        <setting name="enabled">true</setting>
+        <setting name="threshold">1 kB</setting>
+    </event>
+    
+    <event name="jdk.ObjectAllocationOutsideTLAB">
+        <setting name="enabled">true</setting>
+        <setting name="threshold">2 kB</setting>
+    </event>
+    
+    <event name="jdk.FileRead">
+        <setting name="enabled">true</setting>
+        <setting name="stackTrace">true</setting>
+    </event>
+    
+    <event name="jdk.FileWrite">
+        <setting name="enabled">true</setting>
+        <setting name="stackTrace">true</setting>
+    </event>
+    
+    <event name="jdk.FileForce">
+        <setting name="enabled">true</setting>
+    </event>
+    
+    <event name="jdk.GCHeapSummary">
+        <setting name="enabled">true</setting>
+    </event>
+    
+    <event name="jdk.GCConfiguration">
+        <setting name="enabled">true</setting>
+    </event>
+    
+    <!-- Включаем детализацию для вашего пакета -->
+    <event name="jdk.ExecutionSample">
+        <setting name="enabled">true</setting>
+        <setting name="period">1 ms</setting>
+        <setting name="stackTrace">true</setting>
+    </event>
+</configuration>

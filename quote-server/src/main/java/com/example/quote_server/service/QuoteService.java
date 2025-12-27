@@ -1,5 +1,6 @@
 package com.example.quote_server.service;
 
+<<<<<<< Updated upstream
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
@@ -7,15 +8,27 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+=======
+>>>>>>> Stashed changes
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+<<<<<<< Updated upstream
 import java.util.Collections;
 import java.util.List;
+=======
+import java.util.List;
+import java.util.Random;
+
+import org.springframework.stereotype.Service;
+
+import jakarta.annotation.PostConstruct;
+>>>>>>> Stashed changes
 
 @Service
 @Slf4j
 public class QuoteService {
+<<<<<<< Updated upstream
 
     private final ResourceLoader resourceLoader;
 
@@ -50,5 +63,39 @@ public class QuoteService {
 
             return chosenQuote;
         });
+=======
+    private static final String QUOTES_FILE = "src/main/resources/quotes.txt";
+    
+    // Кэшированный список цитат (загружается один раз при старте)
+    private List<String> quotes;
+    
+    // Общий генератор случайных чисел (не создаем при каждом запросе)
+    private final Random random = new Random();
+
+    // Метод инициализации - выполняется один раз при создании бина
+    @PostConstruct
+    public void init() {
+        System.out.println("=== INIT CALLED (чтение файла) ===");  // Отладочный вывод
+        try {
+            // 1. Читаем файл ОДИН РАЗ при старте приложения
+            quotes = Files.readAllLines(Paths.get(QUOTES_FILE));
+            System.out.println("Загружено цитат: " + quotes.size());  // Отладочный вывод
+        } catch (Exception e) {
+            // 2. Фолбэк на случай ошибки чтения файла
+            System.out.println("ОШИБКА чтения файла: " + e.getMessage());  // Отладочный вывод
+            quotes = List.of("Ошибка чтения файла.");
+        }
+>>>>>>> Stashed changes
+    }
+
+    public String getRandomQuote() {
+        System.out.println("getRandomQuote вызван, кэш: " + quotes.size());  // Отладочный вывод
+        // 3. Проверяем, есть ли цитаты
+        if (quotes.isEmpty()) {
+            return "Нет цитат.";
+        }
+        
+        // 4. Выбираем случайную цитату за O(1) без сортировки и shuffle
+        return quotes.get(random.nextInt(quotes.size()));
     }
 }
